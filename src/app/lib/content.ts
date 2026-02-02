@@ -132,22 +132,21 @@ export const homepage = {
     },
   ],
   
-  // Atmosphere section floating bubble images
-  // To use local: add atmosphere-1.jpg through atmosphere-12.jpg to public/images/atmosphere/
-  // Then replace URLs below with "/images/atmosphere/atmosphere-1.jpg" etc.
+  // Atmosphere section orbital carousel images
+  // Images are located in public/images/atmosphere/
   atmosphereImages: [
-    "https://images.unsplash.com/photo-1519741497674-611481863552?w=400",
-    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400",
-    "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400",
-    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400",
-    "https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=400",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-    "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=400",
-    "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400",
-    "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400",
-    "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400",
-    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400",
-    "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400",
+    "/images/atmosphere/(1).jpg",
+    "/images/atmosphere/(2).jpg",
+    "/images/atmosphere/(3).jpg",
+    "/images/atmosphere/(4).jpg",
+    "/images/atmosphere/(5).jpg",
+    "/images/atmosphere/(6).jpg",
+    "/images/atmosphere/(7).jpg",
+    "/images/atmosphere/(8).jpg",
+    "/images/atmosphere/(9).jpg",
+    "/images/atmosphere/(10).jpg",
+    "/images/atmosphere/(11).jpg",
+    "/images/atmosphere/(12).jpg",
   ],
   
   telemetry: {

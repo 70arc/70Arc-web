@@ -6,78 +6,132 @@ import FloatingCard from "@/app/components/FloatingCard";
 import CompassNav from "@/app/components/CompassNav";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
-import { useMousePositionRaw } from "@/app/hooks/useMousePosition";
 import { homepage, brand, features } from "@/app/lib/content";
 
-// Floating bubble component for Atmosphere
-function FloatingBubble({ 
-  src, 
-  size, 
-  initialX, 
-  initialY, 
-  speed 
-}: { 
-  src: string; 
-  size: number; 
-  initialX: number; 
-  initialY: number; 
-  speed: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const mousePosition = useMousePositionRaw();
-  const { scrollYProgress } = useScroll();
+// Orbital Carousel component for Synthesis Gallery
+function OrbitalCarousel({ images }: { images: readonly string[] }) {
+  const [isPaused, setIsPaused] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   
-  const floatY = useTransform(scrollYProgress, [0, 1], [0, -300 * speed]);
-
-  // Calculate repulsion from cursor
-  const getRepulsion = () => {
-    if (!ref.current) return { x: 0, y: 0 };
-    
-    const rect = ref.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    const distanceX = mousePosition.x - centerX;
-    const distanceY = mousePosition.y - centerY;
-    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-    
-    if (distance < 100 && distance > 0) {
-      const force = (1 - distance / 100) * 20;
-      return {
-        x: -(distanceX / distance) * force,
-        y: -(distanceY / distance) * force,
-      };
+  const itemCount = Math.min(images.length, 12);
+  const angleStep = 360 / itemCount;
+  
+  // Radius of the orbit (responsive)
+  const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 180 : 300;
+  
+  const handleItemClick = (index: number) => {
+    if (focusedIndex === index) {
+      setFocusedIndex(null);
+      setIsPaused(false);
+    } else {
+      setFocusedIndex(index);
+      setIsPaused(true);
     }
-    return { x: 0, y: 0 };
   };
 
-  const repulsion = getRepulsion();
-
   return (
-    <motion.div
-      ref={ref}
-      className="absolute rounded-full overflow-hidden shadow-2xl"
-      style={{
-        width: size,
-        height: size,
-        left: `${initialX}%`,
-        top: `${initialY}%`,
-        y: floatY,
-      }}
-      animate={{
-        x: repulsion.x,
-        y: repulsion.y,
-      }}
-      transition={{ type: "spring", stiffness: 100, damping: 20 }}
+    <div 
+      ref={containerRef}
+      className="relative w-full h-[600px] flex items-center justify-center perspective-1000"
+      style={{ perspective: '1000px' }}
     >
-      <img 
-        src={src} 
-        alt="" 
-        className="w-full h-full object-cover"
+      {/* Central glow */}
+      <div className="absolute w-32 h-32 bg-gradient-to-r from-safety-orange/30 to-purple-500/30 rounded-full blur-3xl" />
+      
+      {/* Orbital ring visual */}
+      <div 
+        className="absolute w-[600px] h-[600px] border border-white/10 rounded-full"
+        style={{ transform: 'rotateX(75deg)' }}
       />
-    </motion.div>
+      
+      {/* Rotating container */}
+      <motion.div
+        className="relative w-full h-full"
+        style={{ 
+          transformStyle: 'preserve-3d',
+          willChange: 'transform',
+        }}
+        animate={{ 
+          rotateY: isPaused ? undefined : 360,
+        }}
+        transition={{
+          duration: 30,
+          ease: 'linear',
+          repeat: Infinity,
+        }}
+        onHoverStart={() => !focusedIndex && setIsPaused(true)}
+        onHoverEnd={() => !focusedIndex && setIsPaused(false)}
+      >
+        {images.slice(0, itemCount).map((src, index) => {
+          const angle = index * angleStep;
+          const isFocused = focusedIndex === index;
+          
+          return (
+            <motion.div
+              key={index}
+              className="absolute left-1/2 top-1/2 cursor-pointer"
+              style={{
+                width: isFocused ? 280 : 140,
+                height: isFocused ? 200 : 100,
+                marginLeft: isFocused ? -140 : -70,
+                marginTop: isFocused ? -100 : -50,
+                transformStyle: 'preserve-3d',
+                transform: isFocused 
+                  ? 'translateZ(400px)' 
+                  : `rotateY(${angle}deg) translateZ(${radius}px)`,
+                willChange: 'transform',
+                zIndex: isFocused ? 100 : 1,
+              }}
+              animate={{
+                scale: isFocused ? 1.5 : 1,
+                opacity: focusedIndex !== null && !isFocused ? 0.3 : 1,
+              }}
+              transition={{
+                type: 'spring',
+                stiffness: 100,
+                damping: 20,
+              }}
+              onClick={() => handleItemClick(index)}
+              whileHover={!isFocused ? { scale: 1.1 } : {}}
+            >
+              <div 
+                className={`
+                  w-full h-full rounded-2xl overflow-hidden shadow-2xl
+                  ${isFocused ? 'ring-2 ring-safety-orange ring-offset-2 ring-offset-transparent' : ''}
+                `}
+                style={{
+                  transform: `rotateY(${isFocused ? 0 : -angle}deg)`,
+                  backfaceVisibility: 'hidden',
+                }}
+              >
+                <img
+                  src={src}
+                  alt={`Gallery image ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity" />
+              </div>
+            </motion.div>
+          );
+        })}
+      </motion.div>
+      
+      {/* Click hint */}
+      <motion.p
+        className="absolute bottom-4 text-sm opacity-50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ delay: 2 }}
+      >
+        {focusedIndex !== null ? 'Click to close' : 'Hover to pause • Click to focus'}
+      </motion.p>
+    </div>
   );
 }
+
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -101,12 +155,6 @@ export default function Home() {
       }, 3000);
     }
   };
-
-  // Generate consistent positions for atmosphere bubbles
-  const sizes = [100, 140, 80, 120, 90, 110, 130, 85, 95, 145, 75, 105];
-  const xPositions = [5, 80, 20, 65, 10, 85, 35, 75, 50, 15, 70, 45];
-  const yPositions = [10, 25, 45, 60, 75, 15, 35, 70, 85, 55, 40, 20];
-  const speeds = [0.3, 0.5, 0.4, 0.6, 0.35, 0.55, 0.45, 0.5, 0.4, 0.6, 0.35, 0.5];
 
   return (
     <main className="min-h-screen bg-warm-white overflow-x-hidden">
@@ -226,31 +274,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Atmosphere Section */}
+      {/* Synthesis Gallery Section */}
       <section id="atmosphere" className="relative min-h-screen py-32 px-6 overflow-hidden">
         <motion.h2
-          className="font-serif text-5xl md:text-7xl text-center mb-16"
+          className="font-serif text-5xl md:text-7xl text-center mb-8"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Atmosphere
+          Synthesis Gallery
         </motion.h2>
+        
+        <motion.p
+          className="text-center opacity-60 mb-12 max-w-xl mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.6 }}
+          viewport={{ once: true }}
+        >
+          Visual artifacts from our neural synthesis pipeline
+        </motion.p>
 
-        <div className="relative h-[80vh]">
-          {homepage.atmosphereImages.slice(0, 12).map((src, index) => {
-            return (
-              <FloatingBubble
-                key={index}
-                src={src}
-                size={sizes[index]}
-                initialX={xPositions[index]}
-                initialY={yPositions[index]}
-                speed={speeds[index]}
-              />
-            );
-          })}
-        </div>
+        <OrbitalCarousel images={homepage.atmosphereImages} />
       </section>
 
       {/* Telemetry Section - NO ROTATION */}
