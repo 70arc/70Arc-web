@@ -1,72 +1,36 @@
-# 70Arc - Zero-G Spatial Interface
-
-A Next.js 14 website with floating glass panes, anti-gravity physics, and momentum-based scrolling. Content exists in an infinite white void, drifting slowly upward as the user scrolls.
-
-## Design System
-
-- **Background**: #FAFAF9 (Warm White Void)
-- **Accent Primary**: #FF4F00 (Safety Orange)
-- **Accent Secondary**: #2C3E50 (Wet Plate Blue)
-- **Glass**: backdrop-filter blur(40px), white transparency
-- **Typography**: Instrument Serif (display), Inter (body), JetBrains Mono (tech specs)
-
-## Tech Stack
-
-- **Framework**: Next.js 14 (App Router)
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Smooth Scroll**: Lenis
-- **3D**: React Three Fiber (ferrofluid effects)
-- **Deployment**: Vercel
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
+First, run the development server:
+
 ```bash
-npm install
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Project Structure
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```
-src/
-├── app/
-│   ├── page.tsx            # Homepage with all Zero-G sections
-│   ├── globals.css         # Design system and glass effects
-│   └── layout.tsx          # Root layout with fonts and scroll
-├── components/
-│   ├── SmoothScroll.tsx    # Lenis wrapper
-│   ├── GlassCursor.tsx     # Custom floating cursor
-│   ├── GlassPane.tsx       # Reusable glass card with 3D tilt
-│   ├── Compass.tsx         # Magnetic compass navigation
-│   └── sections/
-│       ├── HeroVector.tsx      # Entry with 3 floating panes
-│       ├── Capabilities.tsx    # 5 parallax monoliths
-│       ├── Atmosphere.tsx      # 12 floating photo bubbles
-│       ├── Telemetry.tsx       # Rotating about monolith
-│       ├── Transmission.tsx    # Glass teletype contact
-│       └── ExitVector.tsx      # Safety Orange exit fade
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Sections
+## Learn More
 
-1. **Hero Vector** - Three glass panes enter at 70° trajectory: Logo, orange pill badge, tagline
-2. **Capabilities** - 5 floating monoliths at different Z-depths with parallax
-3. **Atmosphere** - 12 circular bubbles with hover labels
-4. **Telemetry** - Rotating glass about section with ferrofluid background
-5. **Transmission** - Contact form with launching sphere animation
-6. **Exit Vector** - Safety Orange gradient footer
+To learn more about Next.js, take a look at the following resources:
 
-## Deployment
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-```bash
-npm run build  # Test production build
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Push to GitHub and import in [Vercel](https://vercel.com) for instant deployment.
+## Deploy on Vercel
 
-## License
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-All rights reserved © 70Arc
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
