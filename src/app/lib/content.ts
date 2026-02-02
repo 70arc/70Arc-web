@@ -12,8 +12,8 @@ export const brand = {
   name: "70Arc",
   // Logo text (can be replaced with image path if preferred)
   logoText: "70Arc",
-  // Optional logo image - if set, will be used instead of text
-  // Set to null or empty string to use text logo
+  // Logo image path - set to use image instead of text
+  // To use: add logo.png to public/images/brand/ and set to "/images/brand/logo.png"
   logoImage: null as string | null,
   // Tagline shown in footer and meta
   tagline: "Autonomous Creative Systems",
@@ -134,7 +134,9 @@ export const homepage = {
     },
   ],
   
-  // Atmosphere section images - Unsplash URLs or local images
+  // Atmosphere section floating bubble images
+  // To use local: add atmosphere-1.jpg through atmosphere-12.jpg to public/images/atmosphere/
+  // Then replace URLs below with "/images/atmosphere/atmosphere-1.jpg" etc.
   atmosphereImages: [
     "https://images.unsplash.com/photo-1519741497674-611481863552?w=400",
     "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400",
@@ -213,12 +215,14 @@ export const aboutPage = {
     },
   ],
   
+  // Team member photos
+  // To use local: add member-1.jpg through member-4.jpg to public/images/team/
   team: [
     {
       name: "Alexandra Chen",
       role: "Founder & Chief Architect",
       bio: "Former NASA systems engineer who saw the inefficiencies in creative production and decided to apply orbital mechanics to event logistics.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400", // or local: "/images/team/member-1.jpg"
     },
     {
       name: "Marcus Webb",
@@ -432,6 +436,8 @@ export const contactPage = {
     { value: "careers", label: "Career Inquiry" },
   ],
   
+  // Office location images
+  // To use local: add office-sf.jpg and office-nyc.jpg to public/images/offices/
   offices: [
     {
       city: "San Francisco",
@@ -439,8 +445,7 @@ export const contactPage = {
       zip: "San Francisco, CA 94105",
       email: "sf@70arc.com",
       phone: "+1 (415) 555-0170",
-      // Optional office image
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600", // or local: "/images/offices/office-sf.jpg"
     },
     {
       city: "New York",
@@ -500,6 +505,8 @@ export const newsletter = {
 export const services = {
   title: "What We Do",
   subtitle: "Autonomous systems for extraordinary experiences",
+  // Service images
+  // To use local: add service-orchestration.jpg etc. to public/images/services/
   items: [
     {
       name: "Event Orchestration",
