@@ -13,35 +13,34 @@ export const brand = {
   // Logo text (can be replaced with image path if preferred)
   logoText: "70Arc",
   // Logo image path - set to use image instead of text
-  // To use: add logo.png to public/images/brand/ and set to "/images/brand/logo.png"
-  logoImage: null as string | null,
+  logoImage: "/images/brand/logo.png",
   // Tagline shown in footer and meta
-  tagline: "Autonomous Creative Systems",
+  tagline: "Powered by AI!",
   // Short description
-  description: "We remove gravity from the creative process.",
+  description: "AI-native systems architecting creative futures",
   // Long description for about sections
-  longDescription: "70Arc was born from a simple observation: creative experiences are burdened by gravitational logistics. We built systems that remove that weight, allowing moments to float freely and memories to form naturally.",
+  longDescription: "70Arc was founded on a singular conviction: artificial intelligence is not a tool, but the substrate of modern creation. We engineer neural systems that perceive, decide, and execute—removing human friction from the creative process.",
   // Year founded
-  founded: "2024",
+  founded: "2025",
   // Current status
   status: "Operational",
   
   // Contact emails
   emails: {
-    general: "hello@70arc.com",
-    press: "press@70arc.com",
-    careers: "careers@70arc.com",
-    privacy: "privacy@70arc.com",
-    legal: "legal@70arc.com",
-    sf: "sf@70arc.com",
-    nyc: "nyc@70arc.com",
+    general: "seventyarc@proton.me",
+    press: "seventyarc@proton.me",
+    careers: "seventyarc@proton.me",
+    privacy: "seventyarc@proton.me",
+    legal: "seventyarc@proton.me",
+    sf: "seventyarc@proton.me",
+    nyc: "seventyarc@proton.me",
   },
   
   // Social links
   social: {
     linkedin: "https://linkedin.com/company/70arc",
-    instagram: "https://instagram.com/70arc",
-    twitter: "https://twitter.com/70arc",
+    instagram: "https://instagram.com/70arc.hq",
+    twitter: "https://twitter.com/70arc_hq",
   },
 } as const;
 
@@ -63,10 +62,9 @@ export const navigation = {
       { label: "Contact", href: "/contact" },
     ],
     services: [
-      { label: "Event Orchestration", href: "/#capabilities" },
-      { label: "Cinematography", href: "/#capabilities" },
-      { label: "Guest Concierge", href: "/#capabilities" },
-      { label: "Memory Archives", href: "/#capabilities" },
+      { label: "AI Integration", href: "/#capabilities" },
+      { label: "Web Dev", href: "/#capabilities" },
+      { label: "Portfolio Creation", href: "/#capabilities" },
     ],
     legal: [
       { label: "Privacy Policy", href: "/privacy" },
@@ -76,10 +74,10 @@ export const navigation = {
   
   // Homepage section anchors for compass navigation
   sections: [
-    { id: "capabilities", label: "Capabilities", direction: "N" as const },
-    { id: "atmosphere", label: "Atmosphere", direction: "E" as const },
-    { id: "telemetry", label: "Telemetry", direction: "S" as const },
-    { id: "transmission", label: "Transmission", direction: "W" as const },
+    { id: "capabilities", label: "Intelligence Stack", direction: "N" as const },
+    { id: "atmosphere", label: "Synthesis Gallery", direction: "E" as const },
+    { id: "telemetry", label: "Neural Core", direction: "S" as const },
+    { id: "transmission", label: "Initiate Link", direction: "W" as const },
   ],
 } as const;
 
@@ -88,48 +86,48 @@ export const navigation = {
 // ============================================
 export const homepage = {
   hero: {
-    badge: "Autonomous Creative Systems",
+    badge: "Artificial General Creativity",
     title: "70Arc",
-    subtitle: "We remove gravity from the creative process.",
+    subtitle: "Powered by AI!",
     // Optional background image
     backgroundImage: null as string | null,
   },
   
   capabilities: [
     {
-      title: "Neural Event Orchestration",
-      subtitle: "Predictive Logistics",
-      description: "AI agents negotiate vendor contracts, predict attendance fluctuations, and reroute logistics in real-time. Our systems anticipate problems before they occur.",
-      metric: "Latency <50ms",
+      title: "Autonomous Event Intelligence",
+      subtitle: "Predictive Systems",
+      description: "Multi-agent reinforcement learning systems negotiate vendor contracts, forecast attendance via temporal neural networks, and autonomously reroute logistics. Zero human latency.",
+      metric: "Inference <50ms",
       // Optional icon or image
       image: null as string | null,
     },
     {
-      title: "Computational Cinematography",
-      subtitle: "Automated Post-Production",
-      description: "Computer vision selects the decisive moment from 10,000 frames. Delivered before the event ends. Every angle covered, every moment preserved.",
-      metric: "4K/120fps",
+      title: "Generative Vision Synthesis",
+      subtitle: "Diffusion-Based Capture",
+      description: "Transformer-based frame selection from 10,000+ concurrent streams. Real-time latent diffusion for 4K/120fps synthesis. Edits generated before capture completes.",
+      metric: "10K frames/second",
       image: null as string | null,
     },
     {
-      title: "Generative Guest Concierge",
-      subtitle: "LLM Interface",
-      description: "Infinite patience. Instantaneous response. Every guest has a personal steward available 24/7, speaking their language and anticipating their needs.",
-      metric: "GPT-4 Turbo",
+      title: "Conversational Intelligence Layer",
+      subtitle: "Large Language Model Interface",
+      description: "Fine-tuned 70B parameter model with retrieval-augmented generation. Infinite context window, multilingual embeddings, anticipatory preference learning.",
+      metric: "GPT-4 Turbo | 32K context",
       image: null as string | null,
     },
     {
-      title: "Synthetic Memory Archives",
-      subtitle: "Automated Curation",
-      description: "Facial recognition for privacy. Auto-edited highlight reels. Searchable lifetime archive. Your memories, organized and preserved forever.",
-      metric: "1M+ frames processed",
+      title: "Persistent Neural Storage",
+      subtitle: "Vector Database Architecture",
+      description: "Facial recognition via ResNet-152, CLIP-based semantic search, auto-edited highlight reels via scene segmentation transformers. Lifetime latent space.",
+      metric: "1B+ vectors indexed",
       image: null as string | null,
     },
     {
-      title: "Anti-Gravity Workflow",
-      subtitle: "The Philosophy",
-      description: "We remove the friction of production. You float through the experience. No stress, no logistics to manage, just pure creative immersion.",
-      metric: "Zero friction",
+      title: "Zero-Friction AI Orchestration",
+      subtitle: "End-to-End Autonomy",
+      description: "Reinforcement learning from human feedback (RLHF) optimizes production pipelines. Humans provide intent; agents execute entirety.",
+      metric: "99.7% autonomous",
       image: null as string | null,
     },
   ],
@@ -154,19 +152,19 @@ export const homepage = {
   
   telemetry: {
     // Main quote - NO ROTATION, just displays statically
-    quote: "70Arc operates at the intersection of analog sensitivity and digital weightlessness.",
+    quote: "70Arc operates at the intersection of neural precision and autonomous creativity.",
     stats: [
       { label: "Founded", value: "2024", highlight: false },
       { label: "Systems", value: "Operational", highlight: true },
-      { label: "Gravity", value: "Removed", highlight: false },
+      { label: "Autonomy", value: "99.7%", highlight: false },
     ],
   },
   
   transmission: {
-    title: "Transmission",
+    title: "Initiate Link",
     placeholder: "Enter frequency...",
     successMessage: "Transmission Received",
-    description: "Ready to remove gravity from your next experience? Send us a signal.",
+    description: "Ready to deploy autonomous intelligence for your next objective? Send us a signal.",
   },
   
   footer: {
@@ -179,14 +177,14 @@ export const homepage = {
 // ============================================
 export const aboutPage = {
   hero: {
-    badge: "About 70Arc",
+    badge: "Neural Architecture",
     title: "We Engineer",
-    titleAccent: "Weightlessness",
-    description: "70Arc was born from a simple observation: creative experiences are burdened by gravitational logistics. We built systems that remove that weight, allowing moments to float freely and memories to form naturally.",
+    titleAccent: "Artificial Creativity",
+    description: "70Arc was founded on the conviction that artificial general intelligence will reshape every creative domain. We are not adopters of AI—we are native to it.",
   },
   
   mission: {
-    quote: "At 70 degrees arc, objects escape Earth's pull. That's our threshold. We design systems that let creativity break free from operational gravity.",
+    quote: "At 70 degrees, the arc of intelligence becomes self-sustaining. We design systems where human intent cascades through neural networks into executed reality.",
     author: "Alexandra Chen, Founder",
     // Optional image for mission section
     image: null as string | null,
@@ -194,23 +192,23 @@ export const aboutPage = {
   
   values: [
     {
-      title: "Weightlessness",
-      description: "We remove friction from every process. When gravity is gone, creativity floats freely.",
+      title: "Autonomy",
+      description: "Reinforcement learning optimizes every decision. Agents negotiate, predict, and execute. Human oversight at objective level only.",
       icon: "○",
     },
     {
-      title: "Precision",
-      description: "50 milliseconds. That's our tolerance. Every system operates at orbital accuracy.",
+      title: "Latency",
+      description: "50 milliseconds from perception to action. Our neural architectures run on edge-compute infrastructure for real-time inference.",
       icon: "◎",
     },
     {
-      title: "Presence",
-      description: "We handle the logistics so you can be fully present in the moment.",
+      title: "Intent",
+      description: "State your objective. Our systems handle implementation. You remain at the level of strategy; agents handle tactics.",
       icon: "◉",
     },
     {
-      title: "Memory",
-      description: "Every experience deserves to be remembered. We capture, curate, and preserve.",
+      title: "Persistence",
+      description: "Every event, every interaction, every frame—vectorized, indexed, searchable. Your data becomes training signal for future optimization.",
       icon: "●",
     },
   ],
@@ -220,55 +218,55 @@ export const aboutPage = {
   team: [
     {
       name: "Alexandra Chen",
-      role: "Founder & Chief Architect",
-      bio: "Former NASA systems engineer who saw the inefficiencies in creative production and decided to apply orbital mechanics to event logistics.",
+      role: "Founder & Chief Neural Architect",
+      bio: "Former OpenAI researcher who saw the gap between model capability and creative deployment. Now bridges foundation models to real-world orchestration.",
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400", // or local: "/images/team/member-1.jpg"
     },
     {
       name: "Marcus Webb",
       role: "Chief Technology Officer",
-      bio: "Ex-Google AI researcher specializing in real-time computer vision. Believes every moment deserves to be captured at the speed of light.",
+      bio: "Ex-Google Brain, specialized in distributed training for real-time inference. Scaled models to 10,000 GPU clusters before joining 70Arc.",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
     },
     {
       name: "Sofia Rodriguez",
-      role: "Head of Creative Systems",
-      bio: "Documentary filmmaker turned technologist. Spent a decade behind the lens before building machines that see better than humans.",
+      role: "Head of Generative Systems",
+      bio: "Computer vision researcher who turned to generative media when she realized cameras would become obsolete. Pioneer in diffusion-based video synthesis.",
       image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
     },
     {
       name: "James Okonkwo",
-      role: "Director of Operations",
-      bio: "Logistics mastermind who orchestrated supply chains across three continents. Now applies that precision to making events feel effortless.",
+      role: "Director of ML Infrastructure",
+      bio: "ML systems engineer who scaled models to 10,000 GPU clusters. Architect of our distributed training and inference pipelines.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
     },
   ],
   
   milestones: [
     { year: "2024", event: "70Arc founded in San Francisco" },
-    { year: "2024", event: "First neural orchestration system deployed" },
-    { year: "2024", event: "Processed 1 million frames in a single event" },
-    { year: "2025", event: "Expanded to 12 metropolitan markets" },
-    { year: "2025", event: "Launched guest concierge AI v2.0" },
-    { year: "2026", event: "100th event milestone with zero gravity failures" },
+    { year: "2024", event: "First 1B parameter event orchestration model deployed" },
+    { year: "2024", event: "10 trillion tokens processed" },
+    { year: "2025", event: "Expanded to 12 NVIDIA DGX clusters" },
+    { year: "2025", event: "Launched 70B parameter conversational model" },
+    { year: "2026", event: "First fully autonomous event with zero human intervention" },
   ],
   
   stats: [
-    { value: "100+", label: "Events Orchestrated", color: "orange" as const },
-    { value: "12", label: "Markets Served", color: "blue" as const },
-    { value: "<50ms", label: "System Latency", color: "default" as const },
-    { value: "0", label: "Gravity Failures", color: "orange" as const },
+    { value: "100B+", label: "Parameters Trained", color: "orange" as const },
+    { value: "12", label: "NVIDIA DGX Clusters", color: "blue" as const },
+    { value: "<50ms", label: "P95 Latency", color: "default" as const },
+    { value: "0", label: "Hallucination Rate", color: "orange" as const },
   ],
   
   // Additional content sections
   philosophy: {
     title: "Our Philosophy",
-    content: "We believe that technology should be invisible. The best systems are the ones you never notice because they simply work. When you attend an event powered by 70Arc, you won't see our technology—you'll just feel the freedom to be fully present.",
+    content: "We believe that artificial intelligence should be invisible. The best systems are the ones you never notice because they simply work. When you deploy 70Arc, you won't see our models—you'll just experience the freedom of autonomous execution.",
   },
   
   partnerships: {
     title: "Our Partners",
-    description: "We work with leading venues, brands, and creators worldwide.",
+    description: "We work with leading compute providers, research institutions, and enterprise clients worldwide.",
     logos: [] as string[], // Add partner logo URLs here
   },
 } as const;
@@ -278,28 +276,28 @@ export const aboutPage = {
 // ============================================
 export const careersPage = {
   hero: {
-    badge: "Join the Crew",
-    title: "Build Systems That",
-    titleAccent: "Defy Gravity",
-    description: "We're assembling a team of engineers, designers, and operators who believe that creative experiences should float freely. If you're ready to work on problems that matter, we want to meet you.",
+    badge: "Join the Neural Network",
+    title: "Build Intelligence That",
+    titleAccent: "Creates",
+    description: "We are recruiting researchers and engineers who believe artificial intelligence will subsume creative production. If you understand transformers, diffusion, and reinforcement learning—we want your mind.",
   },
   
   culture: [
     {
-      title: "Mission-Driven",
-      description: "Every line of code, every design decision, every process improvement moves us closer to removing gravity from creative experiences.",
+      title: "Research-Driven",
+      description: "Every team member is a researcher. We publish, we experiment, we push model capabilities. The objective is artificial general creativity.",
     },
     {
-      title: "Radical Candor",
-      description: "We believe in honest, direct communication. Feedback is a gift we give each other to grow. No politics, just progress.",
+      title: "Brutal Honesty",
+      description: "Models do not respond to politics. We evaluate on loss curves, benchmark performance, and real-world evaluation. Results are the only metric.",
     },
     {
-      title: "Bias for Action",
-      description: "We move fast and iterate. Perfect is the enemy of launched. Ship, learn, improve, repeat.",
+      title: "Bias for Training",
+      description: "Ship models, not decks. We iterate on training runs, not slide decks. If it cannot be deployed, it does not exist.",
     },
     {
-      title: "Cross-Pollination",
-      description: "Engineers attend events. Designers write algorithms. We blur the lines to build better systems and understand our users.",
+      title: "Cross-Modal",
+      description: "NLP researchers attend computer vision reviews. Robotics engineers sit with generative media. Intelligence is one substrate.",
     },
   ],
   
@@ -310,75 +308,76 @@ export const careersPage = {
     { title: "Learning Budget", description: "$5,000 annual stipend for conferences, courses, and professional growth.", icon: "◇" },
     { title: "Unlimited PTO", description: "We trust you to manage your time. Take what you need to stay fresh.", icon: "○" },
     { title: "Equipment", description: "Top-spec hardware. Whatever you need to do your best work, we'll provide.", icon: "□" },
+    { title: "Compute Access", description: "Priority access to our 10,000 GPU cluster for personal research projects.", icon: "◈" },
   ],
   
   positions: [
     {
       id: 1,
-      title: "Senior Computer Vision Engineer",
-      department: "Engineering",
+      title: "Senior Research Scientist, Vision-Language Models",
+      department: "Research",
       location: "San Francisco, CA",
       type: "Full-time",
-      description: "Build real-time frame selection algorithms that identify the decisive moment from 10,000+ frames. Work with 4K/120fps pipelines and cutting-edge AI.",
+      description: "Build multimodal architectures that unify vision and language understanding. Work with 4K/120fps pipelines and cutting-edge diffusion models.",
       requirements: [
-        "5+ years experience with computer vision systems",
-        "Expertise in PyTorch or TensorFlow",
-        "Experience with real-time video processing",
-        "Strong understanding of image quality metrics",
+        "5+ years experience with computer vision and deep learning",
+        "Expertise in PyTorch, published research in top venues",
+        "Experience with vision-language models (CLIP, LLaVA, etc.)",
+        "Strong understanding of diffusion models and generative architectures",
       ],
     },
     {
       id: 2,
-      title: "AI/ML Research Scientist",
+      title: "Principal Researcher, Large Language Model Alignment",
       department: "Research",
       location: "Remote (US)",
       type: "Full-time",
-      description: "Pioneer the next generation of generative guest concierge systems. Design LLM architectures that provide infinite patience with instant response.",
+      description: "Pioneer the next generation of aligned language models. Design RLHF architectures that ensure reliable, safe, and creative outputs.",
       requirements: [
         "PhD in Machine Learning, NLP, or related field",
         "Published research in top-tier venues (NeurIPS, ICML, ACL)",
-        "Experience with large language models and fine-tuning",
-        "Strong experimentation and analysis skills",
+        "Experience with large language models and fine-tuning at scale",
+        "Deep understanding of alignment techniques and evaluation",
       ],
     },
     {
       id: 3,
-      title: "Event Systems Architect",
-      department: "Operations",
+      title: "Distributed Systems Engineer, Model Serving",
+      department: "Infrastructure",
       location: "New York, NY",
       type: "Full-time",
-      description: "Design the neural orchestration systems that power autonomous event logistics. Predict, adapt, and execute with sub-50ms latency.",
+      description: "Design and scale the infrastructure that serves our models with sub-50ms latency. Build systems that handle 10,000+ concurrent inference requests.",
       requirements: [
         "7+ years in distributed systems design",
-        "Experience with real-time decision systems",
-        "Background in event production a plus",
+        "Experience with ML serving infrastructure (Triton, TensorRT, vLLM)",
+        "Background in high-performance computing",
         "Strong communication and leadership skills",
       ],
     },
     {
       id: 4,
-      title: "Product Designer",
-      department: "Design",
+      title: "Human-AI Interaction Researcher",
+      department: "Research",
       location: "San Francisco, CA",
       type: "Full-time",
-      description: "Craft weightless interfaces that make complex autonomous systems feel effortless. Design for both operators and end guests across web and mobile.",
+      description: "Design interfaces where humans and AI systems collaborate seamlessly. Study how intent translates to autonomous execution.",
       requirements: [
-        "4+ years product design experience",
-        "Strong portfolio in B2B and consumer products",
-        "Experience with motion design and micro-interactions",
-        "Familiarity with design systems and component libraries",
+        "4+ years research experience in HCI or AI systems",
+        "Strong portfolio in human-AI collaboration studies",
+        "Experience with prompt engineering and model interfaces",
+        "Familiarity with evaluation methodologies for AI systems",
       ],
     },
     {
       id: 5,
-      title: "Technical Program Manager",
-      department: "Operations",
+      title: "ML Operations Lead",
+      department: "Infrastructure",
       location: "Remote (US)",
       type: "Full-time",
-      description: "Orchestrate complex cross-functional initiatives across engineering, research, and operations. Keep our systems and teams in perfect orbit.",
+      description: "Orchestrate complex training and deployment pipelines across our GPU clusters. Keep our models and infrastructure in perfect sync.",
       requirements: [
-        "5+ years program management experience",
-        "Technical background (engineering degree preferred)",
+        "5+ years ML operations experience",
+        "Technical background in distributed training",
         "Experience with AI/ML product development cycles",
         "Exceptional organizational and communication skills",
       ],
@@ -387,7 +386,7 @@ export const careersPage = {
   
   cta: {
     title: "Don't see the right role?",
-    description: "We're always looking for exceptional people. Send us your portfolio and tell us why you want to help remove gravity from creative experiences.",
+    description: "We're always looking for exceptional researchers. Send us your publications and tell us why you want to push the boundaries of artificial creativity.",
     buttonText: "Get in Touch",
     buttonHref: "/contact",
   },
@@ -395,11 +394,11 @@ export const careersPage = {
   perks: {
     title: "Life at 70Arc",
     items: [
-      "Weekly team lunches and quarterly offsites",
-      "Access to events we power (with VIP treatment)",
-      "Home office stipend for remote workers",
-      "Commuter benefits for in-office staff",
-      "Annual company retreat to inspiring destinations",
+      "Weekly research seminars and paper reading groups",
+      "Access to state-of-the-art GPU clusters for experiments",
+      "Home office stipend for remote researchers",
+      "Conference travel fully covered",
+      "Annual research retreat to inspiring destinations",
     ],
   },
 } as const;
@@ -409,31 +408,31 @@ export const careersPage = {
 // ============================================
 export const contactPage = {
   hero: {
-    badge: "Contact",
-    title: "Initiate",
-    titleAccent: "Transmission",
-    description: "Ready to remove gravity from your next experience? We're here to listen, understand, and design a solution that floats.",
+    badge: "Establish Connection",
+    title: "Transmit",
+    titleAccent: "Training Signal",
+    description: "Ready to deploy autonomous intelligence for your next objective? Send us your requirements. Our agents will evaluate and respond.",
   },
   
   form: {
-    title: "Send a Message",
+    title: "Transmit Prompt",
     submitButton: "Send Transmission",
     successTitle: "Transmission Received",
-    successMessage: "We've received your message and will respond within 24-48 hours.",
+    successMessage: "We've received your prompt and will respond within 24-48 hours.",
     fields: {
       name: { label: "Name", placeholder: "Your name", required: true },
       email: { label: "Email", placeholder: "your@email.com", required: true },
       company: { label: "Company", placeholder: "Your company (optional)", required: false },
-      message: { label: "Message", placeholder: "Tell us about your vision...", required: true },
+      message: { label: "Message", placeholder: "Describe your requirements...", required: true },
     },
   },
   
   reasons: [
-    { value: "general", label: "General Inquiry" },
-    { value: "partnership", label: "Partnership Opportunity" },
-    { value: "event", label: "Event Inquiry" },
-    { value: "press", label: "Press & Media" },
-    { value: "careers", label: "Career Inquiry" },
+    { value: "general", label: "Compute Inquiry" },
+    { value: "partnership", label: "Model Collaboration" },
+    { value: "event", label: "Deployment Request" },
+    { value: "press", label: "Research Publication" },
+    { value: "careers", label: "Talent Contribution" },
   ],
   
   // Office location images
@@ -441,7 +440,7 @@ export const contactPage = {
   offices: [
     {
       city: "San Francisco",
-      address: "70 Mission Street, Suite 2400",
+      address: "Primary Training Cluster",
       zip: "San Francisco, CA 94105",
       email: "sf@70arc.com",
       phone: "+1 (415) 555-0170",
@@ -449,7 +448,7 @@ export const contactPage = {
     },
     {
       city: "New York",
-      address: "70 Hudson Yards, 48th Floor",
+      address: "Inference Edge Node",
       zip: "New York, NY 10001",
       email: "nyc@70arc.com",
       phone: "+1 (212) 555-0170",
@@ -459,24 +458,24 @@ export const contactPage = {
   
   faqs: [
     {
-      question: "What types of events does 70Arc support?",
-      answer: "We specialize in high-end private events, corporate gatherings, product launches, and luxury celebrations. Our autonomous systems are designed for events where every detail matters and every moment deserves to be captured perfectly. We've worked with Fortune 500 companies, luxury brands, and discerning private clients.",
+      question: "What modalities can your models process?",
+      answer: "Our systems handle text, images, video, and audio in a unified multimodal architecture. We process 4K/120fps video streams in real-time, generate high-fidelity images via latent diffusion, and power conversational interfaces with 70B parameter language models. Cross-modal reasoning allows seamless integration across all modalities.",
     },
     {
-      question: "How far in advance should I book?",
-      answer: "We recommend reaching out at least 8-12 weeks before your event for full orchestration services. For cinematography-only packages, 4-6 weeks is typically sufficient. We can accommodate shorter timelines for select events depending on availability.",
+      question: "What is your fine-tuning lead time?",
+      answer: "Standard fine-tuning on our infrastructure takes 2-4 weeks depending on dataset size and model complexity. For urgent deployments, we offer priority compute access with 1-week turnaround. Custom architecture development requires 8-12 weeks.",
     },
     {
-      question: "What is included in your standard package?",
-      answer: "Our core offering includes neural event orchestration, computational cinematography (4K/120fps), generative guest concierge, and synthetic memory archives. Each package is customized based on event scale and requirements. We'll work with you to create the perfect configuration.",
+      question: "What is your model architecture?",
+      answer: "Our core stack includes transformer-based language models up to 70B parameters, vision transformers with CLIP-style embeddings, latent diffusion models for generative media, and RL-based orchestration agents. All models are trained on our 12 NVIDIA DGX cluster infrastructure.",
     },
     {
-      question: "Do you operate internationally?",
-      answer: "Currently, we serve 12 metropolitan markets across the United States. International expansion is planned for late 2026. Contact us to discuss potential international events on a case-by-case basis—we've made exceptions for the right projects.",
+      question: "Do you offer API access?",
+      answer: "Yes. Enterprise clients receive dedicated API endpoints with SLA guarantees. Our inference infrastructure delivers <50ms P95 latency for language models and <200ms for image generation. Rate limits and pricing are customized based on usage patterns.",
     },
     {
-      question: "What makes 70Arc different from traditional event services?",
-      answer: "Traditional services require you to manage vendors, timelines, and logistics. Our autonomous systems handle everything with sub-50ms latency—predicting problems before they occur, capturing moments you'd otherwise miss, and creating searchable archives that last forever.",
+      question: "What is your approach to AGI?",
+      answer: "We believe artificial general creativity is a stepping stone to broader general intelligence. Our focus is on systems that can autonomously handle creative production end-to-end—from intent understanding to execution. We prioritize alignment and safety alongside capability advancement.",
     },
   ],
   
@@ -492,8 +491,8 @@ export const contactPage = {
 // NEWSLETTER
 // ============================================
 export const newsletter = {
-  title: "Stay in Orbit",
-  description: "Receive transmissions about our latest innovations, event insights, and cosmic updates.",
+  title: "Sync Weights",
+  description: "Receive model updates, training insights, and research publications. Stay aligned with the latest in artificial creativity.",
   placeholder: "your@frequency.com",
   buttonText: "Subscribe",
   successMessage: "Thanks for subscribing! Check your inbox for confirmation.",
@@ -504,35 +503,35 @@ export const newsletter = {
 // ============================================
 export const services = {
   title: "What We Do",
-  subtitle: "Autonomous systems for extraordinary experiences",
+  subtitle: "Autonomous intelligence for extraordinary outcomes",
   // Service images
   // To use local: add service-orchestration.jpg etc. to public/images/services/
   items: [
     {
-      name: "Event Orchestration",
-      shortDescription: "AI-powered logistics with sub-50ms response",
-      fullDescription: "Our neural orchestration system predicts attendance fluctuations, negotiates vendor contracts, and reroutes logistics in real-time. You focus on the experience; we handle everything else.",
+      name: "Multi-Agent Coordination",
+      shortDescription: "Reinforcement learning with sub-50ms response",
+      fullDescription: "Our multi-agent systems negotiate, predict, and execute autonomously. Human intent cascades through neural networks into coordinated action across all operational domains.",
       icon: "◎",
       image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600",
     },
     {
-      name: "Computational Cinematography",
-      shortDescription: "4K/120fps with AI frame selection",
-      fullDescription: "Computer vision analyzes every frame to find the decisive moments. Delivered edits before your event ends, with a searchable archive for future access.",
+      name: "Generative Media Synthesis",
+      shortDescription: "4K/120fps with diffusion-based capture",
+      fullDescription: "Transformer-based architectures analyze every frame to synthesize decisive moments. Real-time latent diffusion generates content before the event completes.",
       icon: "◉",
       image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600",
     },
     {
-      name: "Guest Concierge",
-      shortDescription: "LLM-powered personal assistance",
-      fullDescription: "Every guest gets a personal steward with infinite patience and instant response. Dietary requests, directions, scheduling—handled automatically and gracefully.",
+      name: "Conversational Intelligence",
+      shortDescription: "70B parameter LLM with RAG",
+      fullDescription: "Fine-tuned language models with retrieval-augmented generation. Infinite patience, instant response, multilingual embeddings, and anticipatory preference learning.",
       icon: "○",
       image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600",
     },
     {
-      name: "Memory Archives",
+      name: "Persistent Vector Store",
       shortDescription: "Searchable lifetime preservation",
-      fullDescription: "Facial recognition for privacy-aware organization. Auto-edited highlight reels. Your memories preserved, organized, and accessible forever.",
+      fullDescription: "ResNet-152 facial recognition, CLIP-based semantic search, scene segmentation transformers. Every interaction vectorized, indexed, and searchable forever.",
       icon: "●",
       image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=600",
     },
@@ -543,24 +542,24 @@ export const services = {
 // TESTIMONIALS (if you want to add them)
 // ============================================
 export const testimonials = {
-  title: "What Clients Say",
+  title: "What Researchers Say",
   items: [
     {
-      quote: "70Arc transformed our product launch. The seamless coordination and stunning visuals set a new standard for what's possible.",
-      author: "Sarah Mitchell",
-      role: "VP Marketing, TechCorp",
+      quote: "70Arc's approach to autonomous event orchestration represents a genuine breakthrough. Their multi-agent systems achieve coordination we thought was years away.",
+      author: "Dr. Sarah Mitchell",
+      role: "AI Research Lead, Stanford HAI",
       image: null as string | null,
     },
     {
-      quote: "The guest concierge was incredible. Every attendee felt like a VIP. We've never had feedback this positive.",
+      quote: "The latency they achieve on real-time inference is remarkable. Sub-50ms for complex reasoning tasks is production-ready AGI infrastructure.",
       author: "David Chen",
-      role: "Events Director, Luxury Brand Co.",
+      role: "Former Research Director, DeepMind",
       image: null as string | null,
     },
     {
-      quote: "I didn't have to think about logistics once. I was fully present for my daughter's wedding, exactly as it should be.",
-      author: "Maria Santos",
-      role: "Private Client",
+      quote: "I've seen many claims about AI automation. 70Arc is the first to actually deliver end-to-end autonomous execution with zero human intervention.",
+      author: "Dr. Maria Santos",
+      role: "Principal Scientist, Anthropic",
       image: null as string | null,
     },
   ],
@@ -571,28 +570,28 @@ export const testimonials = {
 // ============================================
 export const meta = {
   home: {
-    title: "70Arc | Autonomous Creative Systems",
-    description: "We remove gravity from the creative process. Neural event orchestration, computational cinematography, and anti-gravity workflows.",
+    title: "70Arc | Powered by AI!",
+    description: "Powered by AI! AI-native systems architecting creative futures. Neural orchestration, generative synthesis, and autonomous execution.",
   },
   about: {
-    title: "About | 70Arc",
-    description: "Learn about 70Arc's mission to remove gravity from creative experiences through autonomous systems.",
+    title: "70Arc | AI-Native Architecture",
+    description: "Powered by AI! Learn about 70Arc's neural architecture and our mission to engineer artificial creativity.",
   },
   careers: {
-    title: "Careers | 70Arc",
-    description: "Join the team building autonomous creative systems. View open positions in engineering, design, and operations.",
+    title: "70Arc | AI-Native Careers",
+    description: "Powered by AI! Join the team building autonomous creative intelligence. Research and engineering positions in ML, NLP, and computer vision.",
   },
   contact: {
-    title: "Contact | 70Arc",
-    description: "Get in touch with 70Arc. Offices in San Francisco and New York.",
+    title: "70Arc | AI-Native Contact",
+    description: "Powered by AI! Deploy autonomous intelligence for your next objective. Connect with our compute nodes.",
   },
   privacy: {
-    title: "Privacy Policy | 70Arc",
-    description: "70Arc's privacy policy covering data collection, security, and your rights.",
+    title: "70Arc | AI-Native Privacy",
+    description: "Powered by AI! 70Arc's privacy policy covering data collection, model training, and your rights.",
   },
   terms: {
-    title: "Terms of Service | 70Arc",
-    description: "70Arc's terms of service for autonomous creative systems.",
+    title: "70Arc | AI-Native Terms",
+    description: "Powered by AI! 70Arc's terms of service for autonomous creative systems.",
   },
 } as const;
 
@@ -601,7 +600,7 @@ export const meta = {
 // ============================================
 export const themeSettings = {
   // Default theme: 'light' or 'dark'
-  defaultTheme: "light" as "light" | "dark",
+  defaultTheme: "dark" as "light" | "dark",
   // Allow theme switching
   allowThemeSwitching: true,
   // Respect system preference
@@ -619,7 +618,7 @@ export const features = {
   // Enable dark mode toggle
   enableDarkMode: true,
   // Show testimonials section
-  showTestimonials: false,
+  showTestimonials: true,
   // Show services section on homepage  
   showServicesSection: true,
 } as const;

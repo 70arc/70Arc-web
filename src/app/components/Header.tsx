@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { navigation, brand } from "@/app/lib/content";
@@ -50,7 +51,7 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <motion.div
           className={cn(
-            "rounded-full px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-300",
+            "rounded-full px-4 sm:px-6 py-1 flex items-center justify-between transition-all duration-300",
             isScrolled 
               ? "glass-card shadow-lg" 
               : "glass-card-light"
@@ -62,10 +63,23 @@ export default function Header() {
           {/* Logo */}
           <Link 
             href="/" 
-            className="font-serif text-xl sm:text-2xl font-bold hover:text-safety-orange transition-colors"
+            className="flex items-center hover:opacity-80 transition-opacity"
             aria-label={`${brand.name} - Home`}
           >
-            {brand.name}
+            {brand.logoImage ? (
+              <Image
+                src={brand.logoImage}
+                alt={brand.name}
+                width={120}
+                height={40}
+                className="h-8 sm:h-12 w-auto"
+                priority
+              />
+            ) : (
+              <span className="font-serif text-xl sm:text-2xl font-bold hover:text-safety-orange transition-colors">
+                {brand.name}
+              </span>
+            )}
           </Link>
 
           {/* Desktop Navigation */}
