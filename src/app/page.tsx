@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import FloatingCard from "@/app/components/FloatingCard";
 import CompassNav from "@/app/components/CompassNav";
@@ -8,130 +8,129 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { homepage, brand, features } from "@/app/lib/content";
 
-// Orbital Carousel component for Synthesis Gallery
-function OrbitalCarousel({ images }: { images: readonly string[] }) {
-  const [isPaused, setIsPaused] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+// Horizontal Bento Grid Gallery
+function BentoGallery({ images }: { images: readonly string[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
-  const itemCount = Math.min(images.length, 12);
-  const angleStep = 360 / itemCount;
-  
-  // Radius of the orbit (responsive)
-  const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 180 : 300;
-  
-  const handleItemClick = (index: number) => {
-    if (focusedIndex === index) {
-      setFocusedIndex(null);
-      setIsPaused(false);
-    } else {
-      setFocusedIndex(index);
-      setIsPaused(true);
-    }
+  // Auto-scroll animation
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    
+    let direction = 1;
+    let scrollPos = 0;
+    
+    const animate = () => {
+      if (!container) return;
+      
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      scrollPos += direction * 0.5;
+      
+      // Reverse direction at ends
+      if (scrollPos >= maxScroll) {
+        direction = -1;
+      } else if (scrollPos <= 0) {
+        direction = 1;
+      }
+      
+      container.scrollLeft = scrollPos;
+    };
+    
+    const interval = setInterval(animate, 20);
+    
+    // Pause on hover
+    const handleMouseEnter = () => clearInterval(interval);
+    const handleMouseLeave = () => {
+      scrollPos = container.scrollLeft;
+    };
+    
+    container.addEventListener('mouseenter', handleMouseEnter);
+    container.addEventListener('mouseleave', handleMouseLeave);
+    
+    return () => {
+      clearInterval(interval);
+      container.removeEventListener('mouseenter', handleMouseEnter);
+      container.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
+  // Create bento layout pattern (alternating sizes)
+  const getSize = (index: number) => {
+    const pattern = index % 5;
+    if (pattern === 0 || pattern === 3) return 'w-80 h-64'; // Large
+    if (pattern === 1 || pattern === 4) return 'w-64 h-48'; // Medium
+    return 'w-52 h-40'; // Small
   };
 
   return (
-    <div 
-      ref={containerRef}
-      className="relative w-full h-[600px] flex items-center justify-center perspective-1000"
-      style={{ perspective: '1000px' }}
-    >
-      {/* Central glow */}
-      <div className="absolute w-32 h-32 bg-gradient-to-r from-safety-orange/30 to-purple-500/30 rounded-full blur-3xl" />
-      
-      {/* Orbital ring visual */}
+    <>
+      {/* Scrolling Container */}
       <div 
-        className="absolute w-[600px] h-[600px] border border-white/10 rounded-full"
-        style={{ transform: 'rotateX(75deg)' }}
-      />
-      
-      {/* Rotating container */}
-      <motion.div
-        className="relative w-full h-full"
-        style={{ 
-          transformStyle: 'preserve-3d',
-          willChange: 'transform',
-        }}
-        animate={{ 
-          rotateY: isPaused ? undefined : 360,
-        }}
-        transition={{
-          duration: 30,
-          ease: 'linear',
-          repeat: Infinity,
-        }}
-        onHoverStart={() => !focusedIndex && setIsPaused(true)}
-        onHoverEnd={() => !focusedIndex && setIsPaused(false)}
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto pb-4 px-6 hide-scrollbar scroll-smooth"
+        style={{ scrollSnapType: 'x mandatory' }}
       >
-        {images.slice(0, itemCount).map((src, index) => {
-          const angle = index * angleStep;
-          const isFocused = focusedIndex === index;
-          
-          return (
-            <motion.div
-              key={index}
-              className="absolute left-1/2 top-1/2 cursor-pointer"
-              style={{
-                width: isFocused ? 280 : 140,
-                height: isFocused ? 200 : 100,
-                marginLeft: isFocused ? -140 : -70,
-                marginTop: isFocused ? -100 : -50,
-                transformStyle: 'preserve-3d',
-                transform: isFocused 
-                  ? 'translateZ(400px)' 
-                  : `rotateY(${angle}deg) translateZ(${radius}px)`,
-                willChange: 'transform',
-                zIndex: isFocused ? 100 : 1,
-              }}
-              animate={{
-                scale: isFocused ? 1.5 : 1,
-                opacity: focusedIndex !== null && !isFocused ? 0.3 : 1,
-              }}
-              transition={{
-                type: 'spring',
-                stiffness: 100,
-                damping: 20,
-              }}
-              onClick={() => handleItemClick(index)}
-              whileHover={!isFocused ? { scale: 1.1 } : {}}
+        {images.map((src, index) => (
+          <motion.div
+            key={index}
+            className={`${getSize(index)} flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer relative group`}
+            style={{ scrollSnapAlign: 'start' }}
+            whileHover={{ scale: 1.02, y: -4 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            onClick={() => setSelectedImage(src)}
+          >
+            <img
+              src={src}
+              alt={`Gallery image ${index + 1}`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-3 left-3 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              View
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      
+      {/* Scroll hint */}
+      <p className="text-center text-sm opacity-40 mt-4">
+        Scroll to explore • Click to view
+      </p>
+      
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.img
+              src={selectedImage}
+              alt="Selected gallery image"
+              className="max-w-[90vw] max-h-[80vh] rounded-2xl shadow-2xl"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+            />
+            <button
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              onClick={() => setSelectedImage(null)}
             >
-              <div 
-                className={`
-                  w-full h-full rounded-2xl overflow-hidden shadow-2xl
-                  ${isFocused ? 'ring-2 ring-safety-orange ring-offset-2 ring-offset-transparent' : ''}
-                `}
-                style={{
-                  transform: `rotateY(${isFocused ? 0 : -angle}deg)`,
-                  backfaceVisibility: 'hidden',
-                }}
-              >
-                <img
-                  src={src}
-                  alt={`Gallery image ${index + 1}`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity" />
-              </div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
-      
-      {/* Click hint */}
-      <motion.p
-        className="absolute bottom-4 text-sm opacity-50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ delay: 2 }}
-      >
-        {focusedIndex !== null ? 'Click to close' : 'Hover to pause • Click to focus'}
-      </motion.p>
-    </div>
+              <span className="text-2xl text-white">×</span>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
-
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -294,7 +293,7 @@ export default function Home() {
           Visual artifacts from our neural synthesis pipeline
         </motion.p>
 
-        <OrbitalCarousel images={homepage.atmosphereImages} />
+        <BentoGallery images={homepage.atmosphereImages} />
       </section>
 
       {/* Telemetry Section - NO ROTATION */}

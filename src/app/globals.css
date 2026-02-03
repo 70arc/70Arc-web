@@ -12,6 +12,44 @@
   --font-sans: "Inter", system-ui, sans-serif;
 }
 
+/* ============================================
+   ORBITAL CAROUSEL ANIMATION
+   ============================================ */
+@keyframes orbit-rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.orbit-scene {
+  perspective: 1000px;
+  perspective-origin: center center;
+}
+
+.orbit-carousel {
+  transform-style: preserve-3d;
+  animation: orbit-rotate 20s linear infinite;
+}
+
+.orbit-carousel.paused {
+  animation-play-state: paused;
+}
+
+.orbit-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.orbit-item-inner {
+  transform-style: preserve-3d;
+}
+
 :root {
   --background: #FAFAF9;
   --foreground: #1C1917;
