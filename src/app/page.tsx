@@ -6,7 +6,9 @@ import FloatingCard from "@/app/components/FloatingCard";
 import CompassNav from "@/app/components/CompassNav";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import Testimonials from "@/app/components/Testimonials";
 import { homepage, brand, features } from "@/app/lib/content";
+import { sanitizeInput } from "@/app/lib/utils";
 
 // Horizontal Bento Grid Gallery
 function BentoGallery({ images }: { images: readonly string[] }) {
@@ -146,7 +148,12 @@ export default function Home() {
   const [isTransmitted, setIsTransmitted] = useState(false);
 
   const handleTransmit = () => {
-    if (inputValue.trim()) {
+    const trimmedValue = inputValue.trim();
+    // Validate input length and content
+    if (trimmedValue && trimmedValue.length <= 500) {
+      const sanitizedValue = sanitizeInput(trimmedValue);
+      // Form data ready: sanitizedValue
+      // TODO: Send to backend API when implemented
       setIsTransmitted(true);
       setTimeout(() => {
         setInputValue("");
@@ -167,6 +174,9 @@ export default function Home() {
         className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden"
         style={{ opacity: heroOpacity, scale: heroScale }}
       >
+        {/* Animated Mesh Gradient Background */}
+        <div className="absolute inset-0 mesh-gradient" />
+        
         {/* Animated Background Blobs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 -left-20 w-96 h-96 bg-safety-orange/10 rounded-full blur-3xl animate-blob" />
@@ -432,6 +442,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       <Footer />
     </main>

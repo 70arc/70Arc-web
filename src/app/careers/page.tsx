@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 import { careersPage } from "@/app/lib/content";
 import { fadeUpVariant, staggerContainerVariant, staggerItemVariant } from "@/app/lib/animations";
 import { cn } from "@/app/lib/utils";
@@ -12,6 +13,7 @@ export default function CareersPage() {
   return (
     <main className="min-h-screen bg-warm-white">
       <Header />
+      <Breadcrumbs />
 
       {/* Hero Section */}
       <section className="pt-28 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-12">

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 import { meta } from "@/app/lib/content";
 import { fadeUpVariant, staggerContainerVariant, staggerItemVariant } from "@/app/lib/animations";
 
@@ -76,6 +77,7 @@ export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-warm-white">
       <Header />
+      <Breadcrumbs />
 
       <section className="pt-28 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-12">
         <div className="max-w-3xl mx-auto">

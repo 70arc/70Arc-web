@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
+import CountUp from "@/app/components/CountUp";
 import { aboutPage } from "@/app/lib/content";
 import { fadeUpVariant, staggerContainerVariant, staggerItemVariant, slideInLeftVariant, slideInRightVariant } from "@/app/lib/animations";
 import { cn } from "@/app/lib/utils";
@@ -12,6 +14,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-warm-white">
       <Header />
+      <Breadcrumbs />
 
       {/* Hero Section */}
       <section className="pt-28 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-12">
@@ -230,7 +233,11 @@ export default function AboutPage() {
                   stat.color === "orange" && "text-safety-orange",
                   stat.color === "blue" && "text-wet-plate-blue"
                 )}>
-                  {stat.value}
+                  <CountUp 
+                    end={stat.value} 
+                    duration={2.5}
+                    className="tabular-nums"
+                  />
                 </div>
                 <p className="text-charcoal/60 text-xs sm:text-sm">{stat.label}</p>
               </motion.div>

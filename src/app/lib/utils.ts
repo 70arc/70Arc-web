@@ -14,12 +14,28 @@ export function sanitizeInput(input: string): string {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#x27;")
     .replace(/\//g, "&#x2F;")
+    .replace(/`/g, "&#x60;") // Prevent template literal injection
+    .replace(/\$/g, "&#x24;") // Prevent template literal expressions
+    .replace(/\\/g, "&#x5C;") // Escape backslashes
     .trim();
 }
 
-// Validate email format
+// Validate email format (RFC 5322 compliant, stricter validation)
 export function isValidEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // More strict email validation:
+  // - Must have valid local part (letters, numbers, dots, hyphens, underscores)
+  // - Must have @ symbol
+  // - Must have domain with at least one dot
+  // - TLD must be 2-63 characters (letters only)
+  // - Maximum 254 characters total
+  if (email.length > 254) return false;
+  
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,63}$/;
+  
+  // Additional checks
+  if (email.includes("..")) return false; // No consecutive dots
+  if (email.startsWith(".") || email.endsWith(".")) return false;
+  
   return emailRegex.test(email);
 }
 

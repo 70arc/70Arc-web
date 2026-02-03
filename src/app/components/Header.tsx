@@ -76,7 +76,7 @@ export default function Header() {
                 priority
               />
             ) : (
-              <span className="font-serif text-xl sm:text-2xl font-bold hover:text-safety-orange transition-colors">
+              <span className="font-serif text-xl sm:text-2xl font-bold text-charcoal dark:text-white hover:text-safety-orange transition-colors">
                 {brand.name}
               </span>
             )}
@@ -92,7 +92,7 @@ export default function Header() {
                   "text-sm font-medium transition-colors relative group",
                   pathname === link.href
                     ? "text-safety-orange"
-                    : "opacity-70 hover:opacity-100"
+                    : "text-charcoal/70 dark:text-white/70 hover:text-charcoal dark:hover:text-white"
                 )}
               >
                 {link.label}
@@ -189,7 +189,7 @@ export default function Header() {
                           "block text-lg font-medium py-3 px-4 rounded-xl transition-colors",
                           pathname === link.href
                             ? "text-safety-orange bg-safety-orange/10"
-                            : "opacity-70 hover:opacity-100 hover:bg-white/50 dark:hover:bg-white/10"
+                            : "text-charcoal/70 dark:text-white/70 hover:text-charcoal dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/10"
                         )}
                       >
                         {link.label}

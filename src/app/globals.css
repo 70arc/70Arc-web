@@ -96,10 +96,72 @@ body {
   color: #FAFAF9;
 }
 
+/* Premium Mesh Gradient Animation */
+@keyframes mesh-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.mesh-gradient {
+  background: linear-gradient(
+    -45deg, 
+    rgba(255, 79, 0, 0.15),
+    rgba(44, 62, 80, 0.15),
+    rgba(255, 79, 0, 0.1),
+    rgba(44, 62, 80, 0.2)
+  );
+  background-size: 400% 400%;
+  animation: mesh-gradient 15s ease infinite;
+}
+
+.dark .mesh-gradient {
+  background: linear-gradient(
+    -45deg, 
+    rgba(255, 79, 0, 0.1),
+    rgba(44, 62, 80, 0.2),
+    rgba(255, 79, 0, 0.15),
+    rgba(44, 62, 80, 0.1)
+  );
+  background-size: 400% 400%;
+  animation: mesh-gradient 15s ease infinite;
+}
+
 /* Focus Styles for Accessibility */
 :focus-visible {
   outline: 2px solid #FF4F00;
   outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enhanced focus for interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #FF4F00;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 79, 0, 0.2);
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 16px;
+  background: #FF4F00;
+  color: white;
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
 }
 
 /* Glass Card Utilities - Light Mode */

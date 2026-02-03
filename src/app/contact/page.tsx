@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 import { contactPage, brand } from "@/app/lib/content";
 import { fadeUpVariant, staggerContainerVariant, staggerItemVariant } from "@/app/lib/animations";
 import { isValidEmail, sanitizeInput, cn } from "@/app/lib/utils";
@@ -15,6 +16,7 @@ export default function ContactPage() {
     company: "",
     reason: "general",
     message: "",
+    website: "", // Honeypot field - should remain empty
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -55,6 +57,14 @@ export default function ContactPage() {
     
     setIsSubmitting(true);
     
+    // Check honeypot field - if filled, it's likely a bot
+    if (formState.website) {
+      // Silently reject bot submissions
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+      return;
+    }
+    
     // Sanitize inputs
     const sanitizedData = {
       name: sanitizeInput(formState.name),
@@ -67,7 +77,8 @@ export default function ContactPage() {
     // Simulate API call (in production, send to actual endpoint)
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    console.log("Form submitted:", sanitizedData);
+    // Form data is ready for submission - send to your backend API
+    // TODO: Replace with actual API call
     setIsSubmitted(true);
     setIsSubmitting(false);
   };
@@ -87,6 +98,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-warm-white">
       <Header />
+      <Breadcrumbs />
 
       {/* Hero Section */}
       <section className="pt-28 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-12">
@@ -141,13 +153,13 @@ export default function ContactPage() {
                     exit={{ opacity: 0 }}
                     noValidate
                   >
-                    <h2 className="font-serif text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-6">
+                    <h2 className="font-serif text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-6 text-charcoal dark:text-white">
                       {contactPage.form.title}
                     </h2>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium mb-2">
+                        <label htmlFor="name" className="block text-sm font-medium mb-2 text-charcoal dark:text-white">
                           Name <span className="text-safety-orange">*</span>
                         </label>
                         <input
@@ -157,10 +169,10 @@ export default function ContactPage() {
                           value={formState.name}
                           onChange={handleInputChange}
                           className={cn(
-                            "w-full px-4 py-3 bg-white/50 border rounded-xl focus:outline-none transition-colors",
+                            "w-full px-4 py-3 bg-white/50 dark:bg-white/10 border rounded-xl focus:outline-none transition-colors text-charcoal dark:text-white placeholder:text-charcoal/50 dark:placeholder:text-white/50",
                             errors.name 
                               ? "border-red-500 focus:border-red-500" 
-                              : "border-charcoal/10 focus:border-safety-orange"
+                              : "border-charcoal/10 dark:border-white/10 focus:border-safety-orange"
                           )}
                           placeholder="Your name"
                           autoComplete="name"
@@ -171,7 +183,7 @@ export default function ContactPage() {
                         )}
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium mb-2">
+                        <label htmlFor="email" className="block text-sm font-medium mb-2 text-charcoal dark:text-white">
                           Email <span className="text-safety-orange">*</span>
                         </label>
                         <input
@@ -181,10 +193,10 @@ export default function ContactPage() {
                           value={formState.email}
                           onChange={handleInputChange}
                           className={cn(
-                            "w-full px-4 py-3 bg-white/50 border rounded-xl focus:outline-none transition-colors",
+                            "w-full px-4 py-3 bg-white/50 dark:bg-white/10 border rounded-xl focus:outline-none transition-colors text-charcoal dark:text-white placeholder:text-charcoal/50 dark:placeholder:text-white/50",
                             errors.email 
                               ? "border-red-500 focus:border-red-500" 
-                              : "border-charcoal/10 focus:border-safety-orange"
+                              : "border-charcoal/10 dark:border-white/10 focus:border-safety-orange"
                           )}
                           placeholder="your@email.com"
                           autoComplete="email"
@@ -197,7 +209,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium mb-2">
+                      <label htmlFor="company" className="block text-sm font-medium mb-2 text-charcoal dark:text-white">
                         Company
                       </label>
                       <input
@@ -206,15 +218,29 @@ export default function ContactPage() {
                         name="company"
                         value={formState.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/50 border border-charcoal/10 rounded-xl focus:border-safety-orange focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/50 dark:bg-white/10 border border-charcoal/10 dark:border-white/10 rounded-xl focus:border-safety-orange focus:outline-none transition-colors text-charcoal dark:text-white placeholder:text-charcoal/50 dark:placeholder:text-white/50"
                         placeholder="Your company (optional)"
                         autoComplete="organization"
                         maxLength={100}
                       />
                     </div>
 
+                    {/* Honeypot field - hidden from users, bots will fill this */}
+                    <div className="absolute -left-[9999px]" aria-hidden="true">
+                      <label htmlFor="website">Website</label>
+                      <input
+                        type="text"
+                        id="website"
+                        name="website"
+                        value={formState.website}
+                        onChange={handleInputChange}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
+
                     <div>
-                      <label htmlFor="reason" className="block text-sm font-medium mb-2">
+                      <label htmlFor="reason" className="block text-sm font-medium mb-2 text-charcoal dark:text-white">
                         Inquiry Type <span className="text-safety-orange">*</span>
                       </label>
                       <select
@@ -222,7 +248,7 @@ export default function ContactPage() {
                         name="reason"
                         value={formState.reason}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/50 border border-charcoal/10 rounded-xl focus:border-safety-orange focus:outline-none transition-colors appearance-none cursor-pointer"
+                        className="w-full px-4 py-3 bg-white/50 dark:bg-white/10 border border-charcoal/10 dark:border-white/10 rounded-xl focus:border-safety-orange focus:outline-none transition-colors appearance-none cursor-pointer text-charcoal dark:text-white"
                       >
                         {contactPage.reasons.map((reason) => (
                           <option key={reason.value} value={reason.value}>
@@ -233,7 +259,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium mb-2">
+                      <label htmlFor="message" className="block text-sm font-medium mb-2 text-charcoal dark:text-white">
                         Message <span className="text-safety-orange">*</span>
                       </label>
                       <textarea
@@ -243,10 +269,10 @@ export default function ContactPage() {
                         onChange={handleInputChange}
                         rows={5}
                         className={cn(
-                          "w-full px-4 py-3 bg-white/50 border rounded-xl focus:outline-none transition-colors resize-none",
+                          "w-full px-4 py-3 bg-white/50 dark:bg-white/10 border rounded-xl focus:outline-none transition-colors resize-none text-charcoal dark:text-white placeholder:text-charcoal/50 dark:placeholder:text-white/50",
                           errors.message 
                             ? "border-red-500 focus:border-red-500" 
-                            : "border-charcoal/10 focus:border-safety-orange"
+                            : "border-charcoal/10 dark:border-white/10 focus:border-safety-orange"
                         )}
                         placeholder="Tell us about your vision..."
                         maxLength={2000}
@@ -254,7 +280,7 @@ export default function ContactPage() {
                       {errors.message && (
                         <p className="text-red-500 text-sm mt-1">{errors.message}</p>
                       )}
-                      <p className="text-charcoal/40 text-xs mt-1 text-right">
+                      <p className="text-charcoal/40 dark:text-white/40 text-xs mt-1 text-right">
                         {formState.message.length}/2000
                       </p>
                     </div>
